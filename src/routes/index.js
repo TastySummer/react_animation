@@ -28,6 +28,7 @@ import Wysiwyg from 'bundle-loader?lazy!../components/ui/Wysiwyg';  // 按需加
 import Bundle from '../components/widget/Bundle';
 import Cssmodule from '../components/cssmodule';
 import MapUi from '../components/ui/map';
+import Demo from '../components/Demo'
 
 const WysiwygBundle = (props) => (
     <Bundle load={Wysiwyg}>
@@ -47,6 +48,7 @@ export default class CRouter extends Component {
         return (
             <Switch>
                 <Route exact path="/app/dashboard/index" component={Dashboard} />
+                <Route exact path="/app/demo" component={Demo} />
                 <Route exact path="/app/form/basicForm" component={BasicForm} />
                 <Route exact path="/app/table/basicTable" component={BasicTable} />
                 <Route exact path="/app/table/advancedTable" component={AdvancedTable} />
