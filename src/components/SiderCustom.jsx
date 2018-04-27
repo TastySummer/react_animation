@@ -73,6 +73,12 @@ class SiderCustom extends Component {
                     openKeys={this.state.firstHide ? null : [this.state.openKey]}
                     onOpenChange={this.openMenu}
                 />
+                <div className="keyboard-shortcuts" style={{visibility: this.state.firstHide ?'hidden':'visible'}}>
+                    <div className="keyboard">
+                        <div><i className="letter-s">S</i><span>搜索</span></div>
+                        <div><i className="letter-esc">ESC</i><span>退出</span></div>
+                    </div>
+                </div>
                 <style>
                     {`
                     #nprogress .spinner{

@@ -44,6 +44,45 @@
   p {
     margin: 10px 0 10px 0;
   }
+  .keyboard-shortcuts{
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: default;
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    .keyboard{
+      width: auto;
+      div {
+        margin-bottom: .5rem;
+        color: white;
+        height: 1rem;
+        i{
+          font-size: 13px;
+          line-height: 18px;
+          background-color: rgba(255, 255, 255, 0.7);
+          border-radius: 2px;
+          color: #6064ad;
+          display: inline-block;
+          width: 1rem;
+          height: 1rem;
+          line-height: 1rem;
+          text-align: center;
+          text-transform: uppercase;
+          vertical-align: text-bottom;
+          font-style: normal;
+          margin-right: .5rem;
+          &.letter-esc{
+            width: 2rem;
+          }
+        }
+        span{
+          opacity: 0.6;
+        }
+      }
+    }
+  }
 }
 .gutter-example{
   .ant-row{
