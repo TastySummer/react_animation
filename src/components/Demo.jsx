@@ -151,7 +151,7 @@ export default class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
-        
+
         this.getCssClss = this.getCssClss.bind(this);
     }
 

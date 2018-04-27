@@ -56,25 +56,31 @@ class IndexSearch extends React.Component{
         return `
             .example-enter {
               opacity: 0.01;
+              zoom: 0.01;
             }
 
             .example-enter.example-enter-active {
               opacity: 1;
-              transition: opacity 500ms ease-in;
+              zoom: 1;
+              transition: all 500ms ease-in;
             }
             .example-leave {
               opacity: 1;
+              zoom: 1;
             }
             .example-leave.example-leave-active {
               opacity: 0.01;
-              transition: opacity 300ms ease-in;
+              zoom: 0.01;
+              transition: all 300ms ease-in;
             }
             .example-appear {
               opacity: 0.01;
+              zoom: 0.01;
             }
             .example-appear.example-appear-active {
               opacity: 1;
-              transition: opacity .5s ease-in;
+              zoom: 1;
+              transition: all .5s ease-in;
             }
         `
     }
@@ -94,14 +100,14 @@ class IndexSearch extends React.Component{
                         <Col span={12}>
                             <div>
                                 <h2>Demo 说明：</h2>
-                                <p>本页面共有1个组件，Search 组件。流程如下：</p>
-                                
+                                <p>本页面共有1个组件，Search 组件。使用 ReactCSSTransitionGroup 制作页面进入动画效果。</p>
+                                <p>流程如下：</p>
                                 <ul>
                                     <li>输入进件号后，点击回车键或者搜索 icon 进行搜索。</li>
                                     <li>校验进件号码是否有效。</li>
                                     <li>起请求 参数为 value。</li>
                                     <li>如果请求成功，跳转页面，路由为 /app/demo/:id</li>
-                                    <li>如果请求数据失败或者请求数据为空，在本页提示。</li>
+                                    <li>如果请求数据失败或者请求数据为空，在本页提示。例如：可以尝试搜索 2</li>
                                 </ul>
                                 
                             </div>
