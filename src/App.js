@@ -1,20 +1,37 @@
-import React, { Component } from 'react';
-import { Layout, notification, Icon } from 'antd';
+import React, {
+    Component
+} from 'react';
+import {
+    Layout,
+    notification,
+    Icon
+} from 'antd';
 import './style/index.less';
 import SiderCustom from './components/SiderCustom';
 import HeaderCustom from './components/HeaderCustom';
-import { receiveData } from './action';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {
+    receiveData
+} from './action';
+import {
+    connect
+} from 'react-redux';
+import {
+    bindActionCreators
+} from 'redux';
 import Routes from './routes';
-const { Content, Footer } = Layout;
+const {
+    Content,
+    Footer
+} = Layout;
 
 class App extends Component {
     state = {
         collapsed: false,
     };
     componentWillMount() {
-        const { receiveData } = this.props;
+        const {
+            receiveData
+        } = this.props;
         const user = JSON.parse(localStorage.getItem('user'));
         user && receiveData(user, 'auth');
         // receiveData({a: 213}, 'auth');
@@ -29,9 +46,9 @@ class App extends Component {
     componentDidMount() {
         const openNotification = () => {
             notification.open({
-              message: '博主-yezihaohao',
-              description: (
-                  <div>
+                message: '博主-yezihaohao',
+                description: (
+                    <div>
                       <p>
                           GitHub地址： <a href="https://github.com/yezihaohao" target="_blank" rel="noopener noreferrer">https://github.com/yezihaohao</a>
                       </p>
@@ -39,20 +56,24 @@ class App extends Component {
                           博客地址： <a href="https://yezihaohao.github.io/" target="_blank" rel="noopener noreferrer">https://yezihaohao.github.io/</a>
                       </p>
                   </div>
-              ),
-              icon: <Icon type="smile-circle" style={{ color: 'red' }} />,
-              duration: 0,
+                ),
+                icon: <Icon type="smile-circle" style={{ color: 'red' }} />,
+                duration: 0,
             });
             localStorage.setItem('isFirst', JSON.stringify(true));
         };
         const isFirst = JSON.parse(localStorage.getItem('isFirst'));
         !isFirst && openNotification();
     }
-    getClientWidth = () => {    // 获取当前浏览器宽度并设置responsive管理响应式
-        const { receiveData } = this.props;
+    getClientWidth = () => { // 获取当前浏览器宽度并设置responsive管理响应式
+        const {
+            receiveData
+        } = this.props;
         const clientWidth = document.body.clientWidth;
         console.log(clientWidth);
-        receiveData({isMobile: clientWidth <= 992}, 'responsive');
+        receiveData({
+            isMobile: clientWidth <= 992
+        }, 'responsive');
     };
     toggle = () => {
         this.setState({
@@ -62,7 +83,10 @@ class App extends Component {
     render() {
         // console.log(this.props.auth);
         // console.log(this.props.responsive);
-        const { auth, responsive } = this.props;
+        const {
+            auth,
+            responsive
+        } = this.props;
         return (
             <Layout>
                 {!responsive.data.isMobile && <SiderCustom collapsed={this.state.collapsed} />}
@@ -72,7 +96,7 @@ class App extends Component {
                         <Routes auth={auth} />
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>
-                    React-Admin ©2017 Created by 865470087@qq.com
+                    React-Demo ©2018 Powered by 徐妍
                     </Footer>
                 </Layout>
                 
@@ -93,8 +117,17 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-    const { auth = {data: {}}, responsive = {data: {}} } = state.httpData;
-    return {auth, responsive};
+    const {
+        auth = {
+            data: {}
+        }, responsive = {
+            data: {}
+        }
+    } = state.httpData;
+    return {
+        auth,
+        responsive
+    };
 };
 const mapDispatchToProps = dispatch => ({
     receiveData: bindActionCreators(receiveData, dispatch)
