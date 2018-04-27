@@ -45,35 +45,37 @@ class SubTimeline extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            height: []
         }
 
     }
 
     componentDidMount(){
-        let sub = document.getElementsByClassName('sub')[0]
-        Object.assign(sub.style, {
-            transition: 'height 0.6s ease-in-out'
+        let _this = this;
+        let subs = document.getElementsByClassName('sub');
+        let height = [];
+        
+        _.map(subs, (item, index)=>{
+            height.push(item.offsetHeight);
         });
+
         this.setState({
-            height: sub.height
+            height: height
         })
     }
 
     componentWillReceiveProps(nextProps){
         let { height } = this.state;
+        
         if(nextProps.visible != this.props.visible){
-            let id = `'sub_'+${nextProps.index}`;
+            let id = `sub_${nextProps.index}`;
             let sub = document.getElementById(id);
 
-             if(nextProps.visible){
-                 Object.assign(sub.style, {
-                     height: '114px'
-                 })
-             }else{
-                 Object.assign(sub.style, {
-                     height: '0px'
-                 })
+            if(nextProps.visible){
+                console.log(nextProps);
+                sub.style.height = height[nextProps.index]+'px';
+            }else{
+                 sub.style.height = '0px';
              }
         }
     }
@@ -81,7 +83,7 @@ class SubTimeline extends React.Component {
     render() {
         let {visible, index} = this.props;
         return (
-            <div className={`animated ${visible ? 'fadeIn' : 'fadeOut'} sub`} id={`'sub_'+${index}`}>
+            <div className={`animated ${visible ? 'fadeIn' : 'fadeOut'} sub`} id={`sub_${index}`}>
                 <Timeline>
                         <Timeline.Item style={timeline_style.subitem} color={timeline_style.info}>
                             创建服务现场
@@ -158,7 +160,7 @@ export default class Demo extends React.Component {
                                     <div onClick={this.handleClick.bind(this, index)}>
                                         <span style={{paddingRight: '20px'}}>{item.time}</span>{item.step}
                                     </div>
-                                    <SubTimeline visible={item.visible} index={item.index}/>
+                                    <SubTimeline visible={item.visible} index={index}/>
                                 </Timeline.Item>
                             )
                         })
