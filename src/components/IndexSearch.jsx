@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Row, Col, message, Icon } from 'antd';
-import _ from 'lodash';
+// import _ from 'lodash';
 import '../style/mine/demo.less';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
@@ -88,7 +88,7 @@ class IndexSearch extends React.Component{
             .zoom-enter.zoom-enter-active {
                 opacity: 1;
                 transform: scale(1); 
-                transition: all 500ms ease-in;
+                transition: all 1000ms ease-in;
             }
             .zoom-leave {
                 opacity: 1;
@@ -97,7 +97,7 @@ class IndexSearch extends React.Component{
             .zoom-leave.zoom-leave-active {
                 opacity: 0.01;
                 transform: scale(0.01);
-                transition: all 500ms ease-in;
+                transition: all 1000ms ease-in;
             }
             .zoom-appear {
                 opacity: 0.01;
@@ -106,7 +106,7 @@ class IndexSearch extends React.Component{
             .zoom-appear.zoom-appear-active {
                 opacity: 1;
                 transform: scale(1);
-                transition: all 500ms ease-in;
+                transition: all 1000ms ease-in;
             }
         `
     }
@@ -119,9 +119,9 @@ class IndexSearch extends React.Component{
                 <ReactCSSTransitionGroup
                     transitionName="zoom"
                     transitionAppear={true}
-                    transitionAppearTimeout={500} 
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={500}
+                    transitionAppearTimeout={1000} 
+                    transitionEnterTimeout={1000}
+                    transitionLeaveTimeout={1000}
                     component="div">
                     <Row>
                         <Col span={12}>

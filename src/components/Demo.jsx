@@ -218,7 +218,7 @@ class Demo extends React.Component {
             .zoom-enter.zoom-enter-active {
                 opacity: 0.01;
                 transform: scale(0.01); 
-                transition: all 500ms ease-in;
+                transition: all 1000ms ease-in;
             }
             .zoom-leave {
                 opacity: 0.01;
@@ -227,7 +227,7 @@ class Demo extends React.Component {
             .zoom-leave.zoom-leave-active {
                 opacity: 1;
                 transform: scale(1);
-                transition: all 500ms ease-in;
+                transition: all 1000ms ease-in;
             }
             .zoom-appear {
                 opacity: 1;
@@ -236,7 +236,7 @@ class Demo extends React.Component {
             .zoom-appear.zoom-appear-active {
                 opacity: 0.01;
                 transform: scale(0.01);
-                transition: all 500ms ease-in;
+                transition: all 1000ms ease-in;
             }
         `
     }
@@ -250,9 +250,9 @@ class Demo extends React.Component {
                 <ReactCSSTransitionGroup
                     transitionName="zoom"
                     transitionAppear={true}
-                    transitionAppearTimeout={500} 
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={500}
+                    transitionAppearTimeout={1000} 
+                    transitionEnterTimeout={1000}
+                    transitionLeaveTimeout={1000}
                     component="div"> 
                     <Row>
                         <Col span={12}>
