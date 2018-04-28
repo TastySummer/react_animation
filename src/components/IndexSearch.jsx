@@ -4,6 +4,7 @@ import _ from 'lodash';
 import '../style/mine/demo.less';
 import { withRouter } from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { getCssClss } from '../constants/pub_fun.js';
 
 const Search = Input.Search;
 
@@ -16,7 +17,6 @@ class IndexSearch extends React.Component{
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
-        this.getCssClss = this.getCssClss.bind(this);
     }
 
     componentDidMount(){
@@ -52,44 +52,12 @@ class IndexSearch extends React.Component{
         }
     }
 
-    getCssClss(){
-        return `
-            .example-enter {
-                opacity: 0.01;
-                transform: scale(0.01);
-            }
-
-            .example-enter.example-enter-active {
-                opacity: 1;
-                transform: scale(1); 
-                transition: all 1000ms ease-in;
-            }
-            .example-leave {
-                opacity: 1;
-                transform: scale(1);
-            }
-            .example-leave.example-leave-active {
-                opacity: 0.01;
-                transform: scale(0.01);
-                transition: all 1000ms ease-in;
-            }
-            .example-appear {
-                opacity: 0.01;
-                transform: scale(0.01);
-            }
-            .example-appear.example-appear-active {
-                opacity: 1;
-                transform: scale(1);
-                transition: all 1000ms ease-in;
-            }
-        `
-    }
 
     render(){ 
         let { error } = this.state;
         return(
             <div>
-                <style dangerouslySetInnerHTML={{ __html: this.getCssClss() }} />
+                <style dangerouslySetInnerHTML={{ __html: getCssClss() }} />
                 <ReactCSSTransitionGroup
                     transitionName="example"
                     transitionAppear={true}

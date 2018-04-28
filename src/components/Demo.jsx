@@ -186,32 +186,6 @@ export default class Demo extends React.Component {
         e.stopPropagation();
     }
 
-    // getCssClss(){
-    //     return `
-    //         .example-enter {
-    //           opacity: 0.01;
-    //         }
-
-    //         .example-enter.example-enter-active {
-    //           opacity: 1;
-    //           transition: opacity 500ms ease-in;
-    //         }
-    //         .example-leave {
-    //           opacity: 1;
-    //         }
-    //         .example-leave.example-leave-active {
-    //           opacity: 0.01;
-    //           transition: opacity 300ms ease-in;
-    //         }
-    //         .example-appear {
-    //           opacity: 0.01;
-    //         }
-    //         .example-appear.example-appear-active {
-    //           opacity: 1;
-    //           transition: opacity .5s ease-in;
-    //         }
-    //     `
-    // }
 
     render() {
         let {timeline} = this.state;
