@@ -3,7 +3,7 @@ import {Timeline, Row, Col} from 'antd';
 import _ from 'lodash';
 import '../style/mine/demo.less';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { getCssClss } from '../constants/pub_fun.js'
+import getCssClss from '../constants/pub_fun.js'
 
 const timeline_style = {
     item: {
@@ -153,6 +153,7 @@ export default class Demo extends React.Component {
         super(props);
         this.state = {}
 
+        this.getCssClss = this.getCssClss.bind(this);
     }
 
     componentDidMount() {
@@ -186,17 +187,49 @@ export default class Demo extends React.Component {
         e.stopPropagation();
     }
 
+    getCssClss(){
+        return `
+            .example-enter {
+                opacity: 0.01;
+                transform: scale(0.01);
+            }
+
+            .example-enter.example-enter-active {
+                opacity: 1;
+                transform: scale(1); 
+                transition: all 500ms ease-in;
+            }
+            .example-leave {
+                opacity: 1;
+                transform: scale(1);
+            }
+            .example-leave.example-leave-active {
+                opacity: 0.01;
+                transform: scale(0.01);
+                transition: all 300ms ease-in;
+            }
+            .example-appear {
+                opacity: 0.01;
+                transform: scale(0.01);
+            }
+            .example-appear.example-appear-active {
+                opacity: 1;
+                transform: scale(1);
+                transition: all 500ms ease-in;
+            }
+        `
+    }
 
     render() {
         let {timeline} = this.state;
 
         return (
             <div>
-                <style dangerouslySetInnerHTML={{ __html: getCssClss() }} />
+                {/*<style dangerouslySetInnerHTML={{ __html: this.getCssClss() }} /> */}
                 <ReactCSSTransitionGroup
                     transitionName="example"
                     transitionAppear={true}
-                    transitionAppearTimeout={1000}
+                    transitionAppearTimeout={500}
                     transitionEnter={false}
                     transitionLeave={false}>
                     <Row>

@@ -39,7 +39,7 @@
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.6",
     "promise": "7.1.1",
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.6.1",
     "rc-banner-anim": "^0.5.13",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.2",

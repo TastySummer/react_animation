@@ -2,21 +2,26 @@ import React from 'react';
 import { Input, Row, Col, message, Icon } from 'antd';
 import _ from 'lodash';
 import '../style/mine/demo.less';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { getCssClss } from '../constants/pub_fun.js';
 
 const Search = Input.Search;
 
 class IndexSearch extends React.Component{
-    constructor(props){
-        super(props);
+    static contextTypes = {
+        router: PropTypes.object
+    }
+    constructor(props, context){
+        super(props, context);
+        
         this.state = {
-            
+            error: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.ZoomIn = this.ZoomIn.bind(this);
     }
 
     componentDidMount(){
@@ -24,12 +29,15 @@ class IndexSearch extends React.Component{
         window.addEventListener('keydown', this.handleKeyDown)
     }
 
+    componentWillLeave(){
+        console.log(1111111111111111)
+    }
+
     handleKeyDown(e){
         //如果按ESC键返回首页
         if(e.keyCode === 27){
             const path = '/app/dashboard/index';
-
-            this.props.history.push(path);
+            this.context.router.history.push(path);
         }
     }
      
@@ -37,7 +45,7 @@ class IndexSearch extends React.Component{
         //校验进件号码是否有效
         //发起请求 参数value
         //如果请求数据失败或者请求数据为空，在本页提示
-        if(value == 2){
+        if(value === '2'){
             // message.error('暂时没有此进件消息，请核对进件号是否正确', 3);
             this.setState({
                 error: true
@@ -48,22 +56,55 @@ class IndexSearch extends React.Component{
             })
             //如果请求成功，跳转页面
             const path = `/app/demo/:${value}`;
-            this.props.history.push(path);
+            this.context.router.history.push(path);
         }
     }
 
+    ZoomIn(){
+        return `
+            .zoom-enter {
+                opacity: 0.01;
+                transform: scale(0.01);
+            }
+
+            .zoom-enter.zoom-enter-active {
+                opacity: 1;
+                transform: scale(1); 
+                transition: all 500ms ease-in;
+            }
+            .zoom-leave {
+                opacity: 1;
+                transform: scale(1);
+            }
+            .zoom-leave.zoom-leave-active {
+                opacity: 0.01;
+                transform: scale(0.01);
+                transition: all 500ms ease-in;
+            }
+            .zoom-appear {
+                opacity: 0.01;
+                transform: scale(0.01);
+            }
+            .zoom-appear.zoom-appear-active {
+                opacity: 1;
+                transform: scale(1);
+                transition: all 500ms ease-in;
+            }
+        `
+    }
 
     render(){ 
         let { error } = this.state;
         return(
             <div>
-                <style dangerouslySetInnerHTML={{ __html: getCssClss() }} />
+                <style dangerouslySetInnerHTML={{ __html: this.ZoomIn() }} />
                 <ReactCSSTransitionGroup
-                    transitionName="example"
+                    transitionName="zoom"
                     transitionAppear={true}
-                    transitionAppearTimeout={1000}
-                    transitionEnter={false}
-                    transitionLeave={false}>
+                    transitionAppearTimeout={500} 
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}
+                    component="ul">
                     <Row>
                         <Col span={12}>
                             <div>
@@ -82,11 +123,7 @@ class IndexSearch extends React.Component{
                         </Col>
                         <Col span={12}>
                             <div style={{
-                                width: '400px',
-                                // position: 'absolute',
-                                // left: '50%',
-                                // top: '50%',
-                                // marginLeft: '-100px'          
+                                width: '400px',         
                             }}> 
                                 <p style={{
                                     fontSize: '16px',
