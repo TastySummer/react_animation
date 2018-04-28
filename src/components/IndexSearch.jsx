@@ -55,32 +55,32 @@ class IndexSearch extends React.Component{
     getCssClss(){
         return `
             .example-enter {
-              opacity: 0.01;
-              zoom: 0.01;
+                opacity: 0.01;
+                transform: scale(0.01);
             }
 
             .example-enter.example-enter-active {
-              opacity: 1;
-              zoom: 1;
-              transition: all 500ms ease-in;
+                opacity: 1;
+                transform: scale(1); 
+                transition: all 1000ms ease-in;
             }
             .example-leave {
-              opacity: 1;
-              zoom: 1;
+                opacity: 1;
+                transform: scale(1);
             }
             .example-leave.example-leave-active {
-              opacity: 0.01;
-              zoom: 0.01;
-              transition: all 300ms ease-in;
+                opacity: 0.01;
+                transform: scale(0.01);
+                transition: all 1000ms ease-in;
             }
             .example-appear {
-              opacity: 0.01;
-              zoom: 0.01;
+                opacity: 0.01;
+                transform: scale(0.01);
             }
             .example-appear.example-appear-active {
-              opacity: 1;
-              zoom: 1;
-              transition: all .5s ease-in;
+                opacity: 1;
+                transform: scale(1);
+                transition: all 1000ms ease-in;
             }
         `
     }
@@ -93,7 +93,7 @@ class IndexSearch extends React.Component{
                 <ReactCSSTransitionGroup
                     transitionName="example"
                     transitionAppear={true}
-                    transitionAppearTimeout={500}
+                    transitionAppearTimeout={1000}
                     transitionEnter={false}
                     transitionLeave={false}>
                     <Row>
