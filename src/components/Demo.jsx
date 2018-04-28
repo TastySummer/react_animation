@@ -94,7 +94,6 @@ class SubTimeline extends React.Component {
         this.state = {
             height: []
         }
-
     }
 
     componentDidMount(){
@@ -103,6 +102,8 @@ class SubTimeline extends React.Component {
         
         _.map(subs, (item, index)=>{
             height.push(item.offsetHeight);
+            //注意此处一定要给每一个sub赋初始height值，否则首次高度为空字符串会造成动画卡顿
+            item.style.height = item.offsetHeight+'px';
         });
 
         this.setState({
@@ -112,6 +113,8 @@ class SubTimeline extends React.Component {
 
     componentWillReceiveProps(nextProps){
         let { height } = this.state;
+
+        console.log( height );
         
         if(nextProps.visible !== this.props.visible){
             let id = `sub_${nextProps.index}`;
@@ -135,18 +138,18 @@ class SubTimeline extends React.Component {
                             return (
                                 <Timeline.Item 
                                     color={item.status === 1 ? timeline_style.success : (item.status === 0 ? timeline_style.warning : (item.status === -1 ? timeline_style.error : timeline_style.info))}
-                                    style={timeline_style.subitem} key={index}>
+                                    style={timeline_style.subitem} 
+                                    key={index}>
                                     <span style={{paddingRight: '20px'}}>{item.time}</span>{item.step}
                                 </Timeline.Item>
                             )
                         })
                     }
-                    </Timeline>
+                </Timeline>
 
-            </div>
+            </div>  
         )
     }
-
 }
 
 class Demo extends React.Component {
@@ -239,7 +242,7 @@ class Demo extends React.Component {
     }
 
     render() {
-        let {timeline} = this.state;
+        let { timeline } = this.state;
 
         return (
             <div>
