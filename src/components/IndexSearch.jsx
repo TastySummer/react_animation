@@ -16,7 +16,8 @@ class IndexSearch extends React.Component{
         super(props, context);
         
         this.state = {
-            error: false
+            error: false,
+            searchValue: ""
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,37 +27,54 @@ class IndexSearch extends React.Component{
 
     componentDidMount(){
         //绑定键盘事件
-        window.addEventListener('keydown', this.handleKeyDown)
+        window.addEventListener('keydown', this.handleKeyDown);
     }
 
-    componentWillLeave(){
-        console.log(1111111111111111)
+    componentWillUnmount(){
+        //绑定键盘事件解除
+        window.removeEventListener('keydown', this.handleKeyDown);
     }
 
-    handleKeyDown(e){
-        //如果按ESC键返回首页
-        if(e.keyCode === 27){
-            const path = '/app/dashboard/index';
-            this.context.router.history.push(path);
-        }
-    }
      
     handleSubmit(value){
         //校验进件号码是否有效
         //发起请求 参数value
         //如果请求数据失败或者请求数据为空，在本页提示
-        if(value === '2'){
-            // message.error('暂时没有此进件消息，请核对进件号是否正确', 3);
+        if(value === ''){
+            message.error('进件号不能为空，请输入正确的进件号', 3);
+        }else{
+            if(value === '2'){
+                
+                this.setState({
+                    error: true
+                })
+            }else {
+                this.setState({
+                    error: false
+                });
+                //去掉value中多余的空格等
+                //如果请求成功，跳转页面
+                const path = `/app/demo/:${value}`;
+                this.context.router.history.push(path);
+            }
+        }
+    }
+
+    handleKeyDown(e){
+        if((e.keyCode>=48 && e.keyCode<=57)||(e.keyCode>=65 && e.keyCode<=90)){
             this.setState({
-                error: true
+                searchValue: (this.state.searchValue).concat(e.key)
             })
-        }else {
+        }
+
+        if(e.keyCode === 8){
             this.setState({
-                error: false
+                searchValue: (this.state.searchValue).substr(0, this.state.searchValue.length - 1)
             })
-            //如果请求成功，跳转页面
-            const path = `/app/demo/:${value}`;
-            this.context.router.history.push(path);
+        }
+
+        if(e.keyCode == 13){
+            this.handleSubmit(this.state.searchValue);
         }
     }
 
@@ -94,7 +112,7 @@ class IndexSearch extends React.Component{
     }
 
     render(){ 
-        let { error } = this.state;
+        let { error, searchValue } = this.state;
         return(
             <div>
                 <style dangerouslySetInnerHTML={{ __html: this.ZoomIn() }} />
@@ -104,7 +122,7 @@ class IndexSearch extends React.Component{
                     transitionAppearTimeout={500} 
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={500}
-                    component="ul">
+                    component="div">
                     <Row>
                         <Col span={12}>
                             <div>
@@ -112,6 +130,7 @@ class IndexSearch extends React.Component{
                                 <p>本页面共有1个组件，Search 组件。使用 ReactCSSTransitionGroup 制作页面进入动画效果。</p>
                                 <p>流程如下：</p>
                                 <ul>
+                                    <li>键盘 0-9，a-z 按键可以自动输入进件号，无需点击搜索框。</li>
                                     <li>输入进件号后，点击回车键或者搜索 icon 进行搜索。</li>
                                     <li>校验进件号码是否有效。</li>
                                     <li>起请求 参数为 value。</li>
@@ -130,7 +149,8 @@ class IndexSearch extends React.Component{
                                     textAlign: 'center'
                                 }}>请输入进件号</p>
                                 <Search
-                                    placeholder="Please input search id..."
+                                    placeholder="请输入进件号"
+                                    value={searchValue}
                                     onSearch={(value) => {this.handleSubmit(value)}}
                                     enterButton
                                     size="large" />

@@ -3,7 +3,8 @@ import {Timeline, Row, Col} from 'antd';
 import _ from 'lodash';
 import '../style/mine/demo.less';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import getCssClss from '../constants/pub_fun.js'
+// import getCssClss from '../constants/pub_fun.js';
+import { withRouter } from 'react-router-dom';
 
 const timeline_style = {
     item: {
@@ -106,7 +107,7 @@ class SubTimeline extends React.Component {
 
         this.setState({
             height: height
-        })
+        });
     }
 
     componentWillReceiveProps(nextProps){
@@ -148,12 +149,13 @@ class SubTimeline extends React.Component {
 
 }
 
-export default class Demo extends React.Component {
+class Demo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
 
-        this.getCssClss = this.getCssClss.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.ZoomOut = this.ZoomOut.bind(this);
     }
 
     componentDidMount() {
@@ -172,7 +174,23 @@ export default class Demo extends React.Component {
 
         this.setState({
             timeline: timeline
-        })
+        });
+
+        //绑定键盘事件
+        window.addEventListener('keydown', this.handleKeyDown);
+    }
+
+    componentWillUnmount(){
+        //绑定键盘事件解除
+        window.removeEventListener('keydown', this.handleKeyDown);
+    }
+
+    handleKeyDown(e){
+        //如果按ESC键返回首页
+        if(e.keyCode === 27){
+            const path = '/app/dashboard/index';
+            this.props.history.push(path);
+        }
     }
 
     handleClick = (index, e) => {
@@ -187,34 +205,34 @@ export default class Demo extends React.Component {
         e.stopPropagation();
     }
 
-    getCssClss(){
+    ZoomOut(){
         return `
-            .example-enter {
-                opacity: 0.01;
-                transform: scale(0.01);
+            .zoom-enter {
+                opacity: 1;
+                transform: scale(1);
             }
 
-            .example-enter.example-enter-active {
-                opacity: 1;
-                transform: scale(1); 
+            .zoom-enter.zoom-enter-active {
+                opacity: 0.01;
+                transform: scale(0.01); 
                 transition: all 500ms ease-in;
             }
-            .example-leave {
-                opacity: 1;
-                transform: scale(1);
-            }
-            .example-leave.example-leave-active {
-                opacity: 0.01;
-                transform: scale(0.01);
-                transition: all 300ms ease-in;
-            }
-            .example-appear {
+            .zoom-leave {
                 opacity: 0.01;
                 transform: scale(0.01);
             }
-            .example-appear.example-appear-active {
+            .zoom-leave.zoom-leave-active {
                 opacity: 1;
                 transform: scale(1);
+                transition: all 500ms ease-in;
+            }
+            .zoom-appear {
+                opacity: 1;
+                transform: scale(1);
+            }
+            .zoom-appear.zoom-appear-active {
+                opacity: 0.01;
+                transform: scale(0.01);
                 transition: all 500ms ease-in;
             }
         `
@@ -225,13 +243,14 @@ export default class Demo extends React.Component {
 
         return (
             <div>
-                {/*<style dangerouslySetInnerHTML={{ __html: this.getCssClss() }} /> */}
+                <style dangerouslySetInnerHTML={{ __html: this.ZoomOut() }} />
                 <ReactCSSTransitionGroup
-                    transitionName="example"
+                    transitionName="zoom"
                     transitionAppear={true}
-                    transitionAppearTimeout={500}
-                    transitionEnter={false}
-                    transitionLeave={false}>
+                    transitionAppearTimeout={500} 
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}
+                    component="div"> 
                     <Row>
                         <Col span={12}>
                             <div>
@@ -278,3 +297,5 @@ export default class Demo extends React.Component {
         )
     }
 }
+
+export default withRouter(Demo)
