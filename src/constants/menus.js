@@ -1,6 +1,9 @@
-export const menus = [
-    { key: '/app/dashboard/index', title: '首页', icon: 'mobile', },
-    { key: '/app/demo', title: 'DEMO', icon: ''},
+export const menus = [{
+        key: '/app/dashboard/index',
+        title: '首页',
+        icon: 'mobile',
+    },
+    // { key: '/app/demo', title: 'DEMO', icon: ''},
     // {
     //     key: '/app/ui', title: 'UI', icon: 'scan',
     //     sub: [
