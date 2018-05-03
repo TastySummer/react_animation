@@ -1,7 +1,7 @@
 import React from 'react';
 import {Timeline, Row, Col} from 'antd';
 import _ from 'lodash';
-import '../style/mine/demo.less';
+import '../../style/mine/demo.less';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 // import getCssClss from '../constants/pub_fun.js';
 import { withRouter } from 'react-router-dom';
@@ -192,7 +192,7 @@ class Demo extends React.Component {
     handleKeyDown(e){
         //如果按ESC键返回首页
         if(e.keyCode === 27){
-            const path = '/app/dashboard/index';
+            const path = '/app/search';
             this.props.history.push(path);
         }
     }

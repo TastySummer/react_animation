@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Row, Col, message, Icon } from 'antd';
 // import _ from 'lodash';
-import '../style/mine/demo.less';
+import '../../style/mine/demo.less';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';

@@ -1,6 +1,3 @@
-/**
- * Created by 叶子 on 2017/8/13.
- */
 import React, {
     Component
 } from 'react';
@@ -24,7 +21,7 @@ import Notifications from '../components/ui/Notifications';
 import Tabs from '../components/ui/Tabs';
 import Banners from '../components/ui/banners';
 import Drags from '../components/ui/Draggable';
-// import Dashboard from '../components/dashboard/Dashboard';
+import Dashboard from '../components/dashboard/Dashboard';
 import Gallery from '../components/ui/Gallery';
 import BasicAnimations from '../components/animation/BasicAnimations';
 import ExampleAnimations from '../components/animation/ExampleAnimations';
@@ -34,8 +31,8 @@ import Wysiwyg from 'bundle-loader?lazy!../components/ui/Wysiwyg'; // 按需加�
 import Bundle from '../components/widget/Bundle';
 import Cssmodule from '../components/cssmodule';
 import MapUi from '../components/ui/map';
-import Demo from '../components/Demo';
-import IndexSearch from '../components/IndexSearch';
+import Demo from '../components/pages/Demo';
+import IndexSearch from '../components/pages/IndexSearch';
 
 const WysiwygBundle = (props) => (
     <Bundle load={Wysiwyg}>
@@ -58,8 +55,8 @@ export default class CRouter extends Component {
     render() {
         return (
             <Switch>
-                {/*<Route exact path="/app/dashboard/index" component={Dashboard} />*/}
-                <Route exact path="/app/dashboard/index" component={IndexSearch} />
+                <Route exact path="/app/dashboard/index" component={Dashboard} />
+                <Route exact path="/app/search" component={IndexSearch} />
                 <Route exact path="/app/demo/:id" component={Demo} />
                 <Route exact path="/app/form/basicForm" component={BasicForm} />
                 <Route exact path="/app/table/basicTable" component={BasicTable} />

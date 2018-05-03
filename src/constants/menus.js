@@ -2,8 +2,11 @@ export const menus = [{
         key: '/app/dashboard/index',
         title: '首页',
         icon: 'mobile',
+    }, {
+        key: '/app/search',
+        title: '搜索',
+        icon: 'search'
     },
-    // { key: '/app/demo', title: 'DEMO', icon: ''},
     // {
     //     key: '/app/ui', title: 'UI', icon: 'scan',
     //     sub: [
