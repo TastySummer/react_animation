@@ -139,7 +139,8 @@ class SubTimeline extends React.Component {
                                 <Timeline.Item 
                                     color={item.status === 1 ? timeline_style.success : (item.status === 0 ? timeline_style.warning : (item.status === -1 ? timeline_style.error : timeline_style.info))}
                                     style={timeline_style.subitem} 
-                                    key={index}>
+                                    key={index}
+                                >
                                     <span style={{paddingRight: '20px'}}>{item.time}</span>{item.step}
                                 </Timeline.Item>
                             )
@@ -201,8 +202,7 @@ class Demo extends React.Component {
         timeline[index].visible = !timeline[index].visible;
 
         this.setState({
-            ...
-                timeline
+            ...timeline
         });
 
         e.stopPropagation();
@@ -249,11 +249,12 @@ class Demo extends React.Component {
                 <style dangerouslySetInnerHTML={{ __html: this.ZoomOut() }} />
                 <ReactCSSTransitionGroup
                     transitionName="zoom"
-                    transitionAppear={true}
+                    transitionAppear
                     transitionAppearTimeout={1000} 
                     transitionEnterTimeout={1000}
                     transitionLeaveTimeout={1000}
-                    component="div"> 
+                    component="div"
+                > 
                     <Row>
                         <Col span={12}>
                             <div>
@@ -266,14 +267,11 @@ class Demo extends React.Component {
                                 </ul>
                                 
                                 <b>所需数据结构为：</b>
-                                <code id="json"></code>
-                                
+                                <code id="json" />
                             </div>
                         </Col>
                         <Col span={12}>
-                            <div style={{
-                                margin: '40px auto'
-                            }}>
+                            <div style={{margin: '40px auto'}}>
                                 <Timeline>
                                     {
                                         //遍历进件进度数据，节点color可以根据条件判断
@@ -282,11 +280,12 @@ class Demo extends React.Component {
                                             return (
                                                 <Timeline.Item
                                                     color={item.status === 1 ? timeline_style.success : (item.status === 0 ? timeline_style.warning : timeline_style.error)}
-                                                    style={timeline_style.item} key={index}>
+                                                    style={timeline_style.item} key={index}
+                                                >
                                                     <div onClick={this.handleClick.bind(this, index)}>
                                                         <span style={{paddingRight: '20px'}}>{item.time}</span>{item.step}
                                                     </div>
-                                                    <SubTimeline visible={item.visible} index={index} subitem={item.sub}/>
+                                                    <SubTimeline visible={item.visible} index={index} subitem={item.sub} />
                                                 </Timeline.Item>
                                             )
                                         })

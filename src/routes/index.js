@@ -24,7 +24,7 @@ import Notifications from '../components/ui/Notifications';
 import Tabs from '../components/ui/Tabs';
 import Banners from '../components/ui/banners';
 import Drags from '../components/ui/Draggable';
-import Dashboard from '../components/dashboard/Dashboard';
+// import Dashboard from '../components/dashboard/Dashboard';
 import Gallery from '../components/ui/Gallery';
 import BasicAnimations from '../components/animation/BasicAnimations';
 import ExampleAnimations from '../components/animation/ExampleAnimations';

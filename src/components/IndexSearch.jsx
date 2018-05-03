@@ -73,7 +73,7 @@ class IndexSearch extends React.Component{
             })
         }
 
-        if(e.keyCode == 13){
+        if(e.keyCode === 13){
             this.handleSubmit(this.state.searchValue);
         }
     }
@@ -118,11 +118,12 @@ class IndexSearch extends React.Component{
                 <style dangerouslySetInnerHTML={{ __html: this.ZoomIn() }} />
                 <ReactCSSTransitionGroup
                     transitionName="zoom"
-                    transitionAppear={true}
+                    transitionAppear
                     transitionAppearTimeout={1000} 
                     transitionEnterTimeout={1000}
                     transitionLeaveTimeout={1000}
-                    component="div">
+                    component="div"
+                >
                     <Row>
                         <Col span={12}>
                             <div>
@@ -141,29 +142,28 @@ class IndexSearch extends React.Component{
                             </div>
                         </Col>
                         <Col span={12}>
-                            <div style={{
-                                width: '400px',         
-                            }}> 
+                            <div style={{width: '400px'}}> 
                                 <p style={{
                                     fontSize: '16px',
-                                    textAlign: 'center'
-                                }}>请输入进件号</p>
+                                    textAlign: 'center'}}
+                                >请输入进件号</p>
                                 <Search
                                     placeholder="请输入进件号"
                                     value={searchValue}
                                     onSearch={(value) => {this.handleSubmit(value)}}
                                     enterButton
-                                    size="large" />
+                                    size="large" 
+                                />
                                     <p style={{
-                                        display: error ? 'block' : 'none',
-                                        textAlign: 'center',
-                                        marginTop: '40px',
-                                        color: '#bfbfbf',
-                                        fontSize: '14px'
-                                    }}>
-                                        <Icon type="frown-o" style={{fontSize: '18px'}}/><span style={{paddingLeft: '10px'}}>暂时没有此进件消息，请核对进件号是否正确</span>
+                                            display: error ? 'block' : 'none',
+                                            textAlign: 'center',
+                                            marginTop: '40px',
+                                            color: '#bfbfbf',
+                                            fontSize: '14px'
+                                        }}
+                                    >
+                                        <Icon type="frown-o" style={{fontSize: '18px'}} /><span style={{paddingLeft: '10px'}}>暂时没有此进件消息，请核对进件号是否正确</span>
                                     </p>
-                                
                             </div>
                         </Col>
                     </Row>
